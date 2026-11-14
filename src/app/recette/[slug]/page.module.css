@@ -1,0 +1,106 @@
+.header2 {
+    background-image: url('/images/photo-header2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 8em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+.recette-image {
+    display: block;
+    width: 80%;
+    justify-self: center;
+    height: auto;
+    border-radius: 21px;
+  }
+
+.main {
+  background-color: #FFFFFF;
+}
+
+.conteneur-page-recette {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    padding: 2em;
+}
+
+.recette-content {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    object-fit: cover;
+    height: auto;
+}
+.titre-recette {
+  letter-spacing: -0.1em;
+  padding-bottom: 0.5em;
+  font-size: 1em;
+  font-stretch: condensed;
+}
+
+  .sous-titre-temps,
+  .sous-titre-ingredients,
+  .sous-titre-ustensiles,
+  .sous-titre-appareils,
+  .sous-titre-description
+ {
+     font-weight: 700;
+     color: #7A7A7A;
+     font-size:0.7em;   
+
+}
+.sous-titre-temps span {
+    background-color: #FFD15B;
+    border-radius: 1em;
+    padding: 0.5em;
+    color: #000000
+}
+
+.sous-titre-temps {
+  margin-bottom: 1.5rem;
+}
+
+.ingredients ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ingredients li,
+.ustensiles li,
+.appareils li
+ {
+  display: flex;
+  flex-direction: column;
+}
+
+.quantite {
+  color: #7a7a7a;
+  padding-bottom: 1em;
+}
+
+.ustensiles ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 768px) /*Adaptation pour écrans étroits*/{
+  .conteneur-page-recette {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+}
+
+

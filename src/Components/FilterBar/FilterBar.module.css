@@ -1,0 +1,34 @@
+.filter-bar {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    width: 100%;
+    max-width: 70rem;
+    margin-inline: auto;
+    justify-content: center;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 1em;
+    column-gap: 4em;
+    row-gap: 1em;
+}
+
+ .filter-bar > form /*adaptation aux écrans moins larges*/{
+  flex: 0 1 12.19em;
+  min-width: 0;
+}
+ .recettes-50 {
+    font-family: var(--font-anton), sans-serif;
+    color: black;
+    font-size: 1.313em;
+    font-weight: 400;
+    margin-left: auto;
+    margin-right: 0%;
+    text-align: right;
+    padding: 0 1.25em;
+    margin-top: 3em;
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding-right: 0;
+
+ }

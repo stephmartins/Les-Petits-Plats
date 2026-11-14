@@ -1,0 +1,85 @@
+.liste-recettes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.recette-card {
+  flex: 0 1 22rem;
+  background-color:#FFFFFF;
+  border-radius: 21px;
+}
+
+.recette-image {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 21px 21px 0 0;
+    height: 15.813em;
+    
+}
+
+.image-temps{
+    position: relative;
+    padding: 0;
+}
+
+.temps{
+    position: absolute;
+    background-color: #FFD15B;
+    border-radius: 1em;
+    top: 1rem;
+    right: 1rem;
+    margin: 0;
+    padding: 0.4rem 0.8rem;
+}
+
+.titre-recette{
+  letter-spacing: -0.1em;
+  padding-bottom: 0.5em;
+  font-size: 1em;
+  font-stretch: condensed;
+}
+
+.sous-titre-recette-ingredients{
+     font-weight: 700;
+     letter-spacing: -0.02em;
+     color: #7A7A7A;
+     font-size:0.7em;
+ }
+ .description{
+    color: #1b1b1b;
+    font-size: 0.9em;
+ }
+ .ingredients{
+    color: #1b1b1b;
+    font-size: 0.9em;
+}
+
+ .ingredients ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ingredients li {
+  display: flex;
+  flex-direction: column;
+}
+
+.quantite-ingredient {
+  color: #7a7a7a;
+  padding-bottom: 1em;
+}
+
+ .bloc-texte-recette{
+    padding: 1rem;
+ }

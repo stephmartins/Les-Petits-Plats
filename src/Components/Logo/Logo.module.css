@@ -1,0 +1,11 @@
+.logo {
+    display:inline-block;
+  
+}
+
+.logo-image {
+    max-height: 1em;
+    margin-left: 2.5em;
+    margin-top: 0.75em;
+}
+
