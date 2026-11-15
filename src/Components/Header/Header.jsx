@@ -3,7 +3,7 @@ import Link from "next/link";
 import Logo from "../Logo/Logo";
 import SearchBar from "../SearchBar/SearchBar";
 
-export default function Header() {
+export default function Header({ onSearch }) {
 
   return (
     <header className={styles.header}>
@@ -12,7 +12,7 @@ export default function Header() {
 
           <h2 className={styles.title}> DÉCOUVREZ NOS RECETTES<br/>DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES </h2>
           
-          <SearchBar/>
+          <SearchBar onSearch={onSearch}/>
           
     </header>
   );

@@ -25,3 +25,6 @@ body {
   font-family: "Manrope", Arial, Helvetica, sans-serif;
  }
 
+ .message-recherche-infructueuse{
+  text-align: center;
+ }

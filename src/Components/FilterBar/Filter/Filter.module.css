@@ -75,6 +75,10 @@
   cursor: pointer;
 }
 
-.filtre-list li:hover /*couleur grisée au suivi du mouvement de la souris dans la liste*/{
-  background-color: #e5e5e5;
+.filtre-list li:hover /*couleur jaune au suivi du mouvement de la souris dans la liste*/{
+  background-color: #ffd15b;
+}
+
+.rectangle-recherche-selectionnee {
+  background-color: #ffd15b;
 }

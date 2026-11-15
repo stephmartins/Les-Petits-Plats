@@ -1,14 +1,13 @@
 import styles from "./CardRecette.module.css";
 import Link from "next/link";
-import recipes from "@/data/recipes.json";
 
-export default function CardRecette({ className }) {
+export default function CardRecette({ recipes, className }) {
   return (
     <div className={styles["liste-recettes"]}>
       {recipes.map((recette) => (
         <article key={recette.id} className={styles["recette-card"]}>
           {/*Lien cliquable de la carte recette vers la page recette */}
-            <Link href={`/recette/${recette.slug}`}>
+            <Link href={`/recette/${recette.slug}`} className={styles["lien-recette"]}>
 
             <div className={styles["image-temps"]}>
               
