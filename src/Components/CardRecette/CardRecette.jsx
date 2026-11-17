@@ -1,7 +1,8 @@
 import styles from "./CardRecette.module.css";
 import Link from "next/link";
 
-export default function CardRecette({ recipes, className }) {
+export default function CardRecette({ recipes }) /*Prop récupérée : voir page.jsx*/
+{
   return (
     <div className={styles["liste-recettes"]}>
       {recipes.map((recette) => (
@@ -12,7 +13,7 @@ export default function CardRecette({ recipes, className }) {
             <div className={styles["image-temps"]}>
               
                 <img
-                    src={`/images/JSON%20recipes/${recette.image}`}
+                    src={`/images/JSON%20recipes/${recette.image}`} /*recette.image : ajoute le nom du fichier de la recette en cours (Recette01.jpg...)*/
                     alt={recette.name}
                     className={styles["recette-image"]}
                 />

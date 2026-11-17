@@ -1,8 +1,8 @@
 import styles from "./Header.module.css";
-import Link from "next/link";
 import Logo from "../Logo/Logo";
 import SearchBar from "../SearchBar/SearchBar";
 
+{/*Prop onSearch définie dans page.jsx pour transmission par Header à SearchBar*/}
 export default function Header({ onSearch }) {
 
   return (

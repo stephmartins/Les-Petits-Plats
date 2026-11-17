@@ -1,25 +1,24 @@
 "use client";
 import styles from "./FilterBar.module.css";
 import Link from "next/link";
-import { useState } from "react";
-import Tag from "@/Components/FilterBar/Filter/Tag";
+import Tag from "@/Components/FilterBar/Tag/Tag";
 
 
-
+{/*Props définies dans page.jsx*/}
 export default function FilterBar({ recipes, onFilterChange }) {
    
     const ingredients = [
-      ...new Set(
-        recipes.flatMap((recipe) =>
+      ...new Set /*Convertir l'ensemble des données en un seul tableau, supprime les doublons, ce qui permettra de les trier avec .sort*/(
+        recipes.flatMap((recipe) /*Flatmap : rassemble les résultats en un seul tableau, ce qui permettra de dédoublonner et trier et */ =>
+          /*Données recipe.ingredients récupérées du fichier json*/
           recipe.ingredients.map((item) => item.ingredient)
         )
       ),
-    ].sort();
+    ].sort(); /*liste ordonnée*/
 
     const appareils = [...new Set(recipes.map((recipe) => recipe.appliance))].sort();
 
-    const ustensiles = [
-      ...new Set(recipes.flatMap((recipe) => recipe.ustensils)),
+    const ustensiles = [...new Set(recipes.flatMap((recipe) => recipe.ustensils)),
     ].sort();
 
 
@@ -28,7 +27,7 @@ export default function FilterBar({ recipes, onFilterChange }) {
             <Tag
                label="Ingrédients"
                options={ingredients}
-               onSelect={(value) => onFilterChange("ingredient", value)} /*Mise à jour du nombre de recettes*/
+               onSelect={(value) => onFilterChange("ingredient" /*voir page.jsx : useState puis composant FilterBar*/, value)} /*Mise à jour du nombre de recettes affichées*/
                />
             <Tag
                label="Appareils"

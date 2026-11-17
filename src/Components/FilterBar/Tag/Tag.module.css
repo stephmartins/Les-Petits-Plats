@@ -79,6 +79,6 @@
   background-color: #ffd15b;
 }
 
-.rectangle-recherche-selectionnee {
+.rectangle-recherche-selectionnee { /*couleur jaune si mot sélectionné*/
   background-color: #ffd15b;
 }

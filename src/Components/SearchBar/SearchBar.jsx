@@ -1,11 +1,26 @@
 "use client";
 import styles from "./SearchBar.module.css";
-import Link from "next/link";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 
 export default function SearchBar({ onSearch }) {
   const [search, setSearch] = useState("");
+
+    useEffect(() => {
+      /*Equivaut à debounce*/
+        const term = search.trim(); /*Supprime les éventuels espaces avnt et après*/
+
+            if (term.length < 3) /*La recherche ne se lance pas si moins de 3 caractères saisis*/{
+            onSearch("");
+            return;
+            }
+
+        const timer = setTimeout(() => {
+            onSearch(term);
+
+        }, 300); /*A partir de 3 caractères saisis, attente de 300ms avant de lancer la recherche*/
+
+        return () => clearTimeout(timer); /*Annule le délai précédent si l'utilisateur continue à taper*/
+    }, [search, onSearch]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,8 +36,8 @@ export default function SearchBar({ onSearch }) {
 
     onSearch(term);
   };
-
-  return (
+         
+ return (
 <div className={styles["search-bar"]}>
 
               <form
@@ -31,7 +46,6 @@ export default function SearchBar({ onSearch }) {
                     <input
                         type="search"
                         placeholder="Rechercher une recette, un ingrédient..."
-                        onSubmit={handleSubmit}
                         value={search}
                         onChange={(event) => setSearch(event.target.value)}
                     />
@@ -41,7 +55,6 @@ export default function SearchBar({ onSearch }) {
                         <img src="/images/loupe-noire-recherche.png" alt="Lancer la recherche" />
                     </button>
               </form>
-             
 </div>
-  )
-}
+  );
+}          
