@@ -11,9 +11,9 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState(""); /*Recherche principale et par tags*/
 
   const [filters, setFilters] = useState({
-  ingredient: "",
-  appliance: "",
-  utensil: "",
+  ingredient: [],
+  appliance: [],
+  ustensil: [],
 });   /*Recherche par Tag*/
 
   const updateFilter = (type, value) => {
@@ -33,17 +33,20 @@ export default function Home() {
       .filter examine chaque recette et crée un nouveau tableau avec celles qui satisfont les conditions en-dessous (chercher le texte saisi en recherche principale dans la liste des recettes)*/
 
     const matchesFilters = /*Vérifie si une recette correspond aux filtres sélectionnés*/
-      (!filters.ingredient /*Aucun ingrédient n'est sélectionné*/||
+      (!filters.ingredient.length /*Aucun ingrédient n'est sélectionné*/||
+        filters.ingredient.some((selected) =>
         recipe.ingredients.some(
           (item) =>
-            item.ingredient.toLowerCase() === filters.ingredient.toLowerCase()
-        )) /*Vérifie si un ingrédient correspond au filtre*/
+            item.ingredient.toLowerCase() === selected.toLowerCase()
+        ))) /*Vérifie si un ingrédient correspond au filtre*/
         &&
-      (!filters.appliance ||
-        recipe.appliance.toLowerCase() === filters.appliance.toLowerCase()) &&
-      (!filters.utensil ||
+      (!filters.appliance.length ||
+        filters.appliance.some((selected) =>
+        recipe.appliance.toLowerCase() === selected.toLowerCase())) &&
+      (!filters.ustensil.length ||
+        filters.ustensil.some((selected) =>
         recipe.ustensils.some(
-          (utensil) => utensil.toLowerCase() === filters.utensil.toLowerCase()
+          (utensil) => utensil.toLowerCase()=== selected.toLowerCase() )
         ));
   /*matchesFilter : Filtre  par rapport aux Tags sélectionnés.*/
 

@@ -1,34 +1,79 @@
 .filter-bar {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    grid-template-areas:
+    "filters count"
+    "options count";
+    column-gap: 4em;
+    row-gap: 0.7em;
+    grid-template-columns: minmax(0, 1fr) auto;
     height: auto;
     width: 100%;
     max-width: 70rem;
     margin-inline: auto;
-    justify-content: center;
+    justify-content: flex-start;
     box-sizing: border-box;
-    flex-wrap: wrap;
-    gap: 1em;
-    column-gap: 4em;
-    row-gap: 1em;
 }
 
- .filter-bar > form /*adaptation aux écrans moins larges*/{
-  flex: 0 1 12.19em;
-  min-width: 0;
+.filter-groups {
+  display: grid;
+  grid-area: filters;
+  grid-template-columns: repeat(3, 12.19em);
+  column-gap: 4em;
 }
+
+
+.filter-bar-without-options {
+    grid-template-areas:
+    "filters count"
+    "spacer count";
+    grid-template-rows: auto 2rem;
+    row-gap: 0;
+    margin-bottom: 0;
+}
+
  .recettes-50 {
+    grid-area: count;
+    width: auto;
+    max-width: 100%;
     font-family: var(--font-anton), sans-serif;
     color: black;
     font-size: 1.313em;
     font-weight: 400;
-    margin-left: auto;
-    margin-right: 0%;
+    margin: 0;
     text-align: right;
-    padding: 0 1.25em;
-    margin-top: 3em;
+    padding: 0 0.25em;
     white-space: nowrap;
-    flex-shrink: 0;
     padding-right: 0;
-
+    align-self: center;
  }
+
+ .selected-options /*Mise en page de l'ensemble des rectangles à fond jaune si un ou plusieurs tags sont sélectionnés*/
+{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  width: 100%;
+  min-height: 3.5em;
+  margin: 0 0 2em 0;
+  padding: 0;
+  list-style: none;
+  border-radius: 12px;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  background: transparent;
+  grid-area: options;
+}
+
+.selected-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5em 0.75em;
+  box-sizing: border-box;
+  background-color: #ffd15b;
+  border-radius: 12px;
+  max-width: 12.19em;
+  height: 3.5em;
+}

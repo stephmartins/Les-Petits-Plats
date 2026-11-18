@@ -25,7 +25,7 @@ export default function SearchBar({ onSearch }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const term = search.trim();
+    const term = search.trim(); /*Supprime les espaces de début et fin*/
 
     if (!term) {
       onSearch("");
@@ -33,27 +33,28 @@ export default function SearchBar({ onSearch }) {
     }
 
     if (term.length < 3) return;
-
     onSearch(term);
   };
          
  return (
 <div className={styles["search-bar"]}>
 
-              <form
-                  className={styles["rectangle-recherche"]}
-                  onSubmit={handleSubmit}>
-                    <input
-                        type="search"
-                        placeholder="Rechercher une recette, un ingrédient..."
-                        value={search}
-                        onChange={(event) => setSearch(event.target.value)}
-                    />
-                    <button
-                        className={styles["loupe"]}
-                        type="submit">
-                        <img src="/images/loupe-noire-recherche.png" alt="Lancer la recherche" />
-                    </button>
+        <form
+            className={styles["rectangle-recherche"]}
+            onSubmit={handleSubmit}>
+                <input
+                    type="search"
+                    placeholder="Rechercher une recette, un ingrédient..."
+                    value={search}
+                    onChange={(event) => setSearch(event.target.value)} /*Mise à jour de la valeur du champ selon la saisie (recherche déclenchée par useEffect au bout de 300 ms).*/
+                />
+
+                <button
+                    className={styles["loupe"]}
+                    type="submit">
+                    <img src="/images/loupe-noire-recherche.png" alt="Lancer la recherche" />
+                </button>
+              
               </form>
 </div>
   );

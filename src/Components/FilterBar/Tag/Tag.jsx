@@ -1,30 +1,34 @@
 "use client";
-
 import { useState } from "react";
 import styles from "./Tag.module.css";
 
-export default function Tag({ label, options, onSelect })/*Props récupérées de FilterBar*/ {
+export default function Tag({ label, options, onSelect, selectedOptions })/*Props récupérées de FilterBar*/ {
+  
   const [search, setSearch] = useState(""); /*Recherche initialisée par un champ vide*/
-
-  const [selectedOption, setSelectedOption] = useState(""); /*Pas d'option sélectionnée au départ*/
+  
+  const addOption = (option) => {
+  
+  const nextOptions = [...selectedOptions, option]; /*Permet de sélectionner plusieurs options*/
+  
+  onSelect(nextOptions);
+  setSearch("");
+  setIsOpen(false);
+}; /*Permet d'ajouter un tag (ingrédient, appareil ou ustensile)*/
 
   const [isOpen, setIsOpen] = useState(false); /*Chevron vers le bas par défaut*/
 
   const filteredOptions = options.filter((option) =>
+    !selectedOptions.includes(option) &&
     option.toLowerCase().includes(search.toLowerCase())
-  ); /*Parcourt le tableau options (ingrédients, appareils ou ustensiles) et construit un nouveau tableau avec les éléments qui passent le test de .includes(...) : vérifie si le mot recherché est présent (résultat : true/false).*/
+  ); /*Parcourt le tableau options (ingrédients, appareils ou ustensiles) et construit un nouveau tableau avec les éléments qui passent le test de .includes(...) : vérifie si le mot recherché est présent (résultat : true/false). Supprime les options déjà sélectionnées*/
 
   return (
+    
     <form onSubmit={(event) => event.preventDefault()}> {/*Empêche de recharger la page*/}
       <div
         className={`${styles["rectangle-recherche"]} ${
             isOpen ? styles["rectangle-recherche-open"] : ""
-          } ${
-            selectedOption && !isOpen
-              ? styles["rectangle-recherche-selectionnee"] /*Fond jaune si mot sélectionné*/
-              : ""
-          }`}
-        
+          } `}
       >
         <input
           type="text"
@@ -33,42 +37,30 @@ export default function Tag({ label, options, onSelect })/*Props récupérées d
           value={search}
           onFocus={() => setIsOpen(true)} /*Champ de recherche déplié*/
           onChange={(event) => {
-              if (selectedOption) {
-                onSelect?.(null); /*Réinitialisation du filtre si l'utilisateur retape après avoir sélectionné un mot*/
+              if (selectedOptions.length > 0) {
+                onSelect?.([]); /*Réinitialisation du filtre si l'utilisateur retape après avoir sélectionné un mot*/
               } /*Fonction onSelect reçue en Prop du composant Tag : voir FilterBar*/
               setSearch(event.target.value); /*Mise à jour de Search avec le texte saisi*/
-              setSelectedOption(""); /*Efface l'option précédemment sélectionnée*/
             }}
-           
-        />
+       />
 
-        <button /*Gestion des chevrons et de la croix*/
+        <button /*Gestion des chevrons*/
           type="button"
           className={styles.fleche}
           aria-expanded={isOpen}
-          onClick={() => {
-              if (selectedOption) {
-                setSearch("");
-                setSelectedOption("");
-                setIsOpen(false);
-                onSelect?.(null); /*lorsque la croix efface la sélection*/
-              return;
-              }
-
-          setIsOpen((open) => !open);
-        }}
-        >
+          onClick={() => 
+                setIsOpen((open) => !open)}
+          >
         
-          <img
+        <img
             src={
                 isOpen
                   ? "/images/fleche-vers-haut.png"
-                  : selectedOption
-                    ? "/images/croix.png"
-                    : "/images/fleche-vers-bas.png"
+                  : "/images/fleche-vers-bas.png"
               }
             alt=""
           />
+
         </button>
 
         {/*Gestion de la liste affichée*/}
@@ -77,19 +69,16 @@ export default function Tag({ label, options, onSelect })/*Props récupérées d
             {filteredOptions.map((option) => (
               <li 
                 key={option}
-                onClick={() => {
-                    setSearch(option);
-                    setSelectedOption(option); /*Option sélectionnée*/
-                    setIsOpen(false); /*Ferme la liste si mot sélectionné*/
-                    onSelect?.(option); /*Fonction onSelect appelée en transmettant l'option choisie : voir FilterBar*/
-                }}
-               >
+                onClick={() => 
+                 addOption(option)}
+               > 
                 {option} {/*Affiche le texte de l'option dans la liste*/}
               </li>
             ))}
           </ul>
         )}
       </div>
+
     </form>
   );
 }

@@ -38,7 +38,7 @@
   padding-right: 0.2em;
 }
 
-.rectangle-recherche::placeholder {
+.rectangle-recherche input::placeholder {
   color: #9ca3af;
 }
 
